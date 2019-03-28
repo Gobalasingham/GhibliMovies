@@ -7,28 +7,25 @@ import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
-import fr.sylvain.myapplication.view.MainActivity;
 import fr.sylvain.myapplication.model.Movie;
 import fr.sylvain.myapplication.model.MovieRestAPI;
+import fr.sylvain.myapplication.view.MovieActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainController {
+public class MovieController {
 
-    private final MainActivity mainActivity;
+    private final MovieActivity mainActivity;
 
-    public MainController(MainActivity mainActivity) {
+    public MovieController(MovieActivity mainActivity) {
         this.mainActivity = mainActivity;
     }
 
     public void onCreate() {
         //mainActivity.showLoader();
-
-
-
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -43,17 +40,18 @@ public class MainController {
         MovieRestAPI movieRestApi = retrofit.create(MovieRestAPI.class);
 
         //On récupére un objet call.
-        Call<List<Movie>> call = movieRestApi.getListMovie();
+        Call<Movie> call = movieRestApi.getMovie("2baf70d1-42bb-4437-b551-e5fed5a87abe");
 
-        call.enqueue(new Callback<List<Movie>>() {
+        call.enqueue(new Callback<Movie>() {
             @Override
-            public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
-                List<Movie> listMovie = response.body();
-                mainActivity.showList(listMovie);
+            public void onResponse(Call<Movie> call, Response<Movie> response) {
+                Log.d("YOOY", response.message());
+                Movie listMovie = response.body();
+                mainActivity.showMovie(listMovie);
             }
 
             @Override
-            public void onFailure(Call<List<Movie>> call, Throwable t) {
+            public void onFailure(Call<Movie> call, Throwable t) {
                 Log.d("Erreur", "API ERROR");
                 t.printStackTrace();
             }

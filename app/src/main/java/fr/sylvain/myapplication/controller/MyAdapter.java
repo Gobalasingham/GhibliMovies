@@ -16,8 +16,10 @@ import java.util.List;
 
 import fr.sylvain.myapplication.R;
 import fr.sylvain.myapplication.model.Movie;
+import fr.sylvain.myapplication.view.MainActivity;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+    private final MainActivity ma;
     private List<Movie> values;
 
     // Provide a reference to the views for each data item
@@ -48,8 +50,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(List<Movie> myDataset) {
+    public MyAdapter(List<Movie> myDataset, MainActivity ma) {
         values = myDataset;
+        this.ma = ma;
     }
 
     // Create new views (invoked by the layout manager)
@@ -71,8 +74,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         Movie selectedMovie = values.get(position);
         final String name = selectedMovie.getTitle();
         holder.txtName.setText(name);
+        holder.txtName.setOnClickListener(ma);
         Picasso.get().load(selectedMovie.getImage()).into(holder.imgMovie);
-
     }
 
     // Return the size of your dataset (invoked by the layout manager)
