@@ -27,8 +27,6 @@ public class MainController {
     public void onCreate() {
         //mainActivity.showLoader();
 
-
-
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();

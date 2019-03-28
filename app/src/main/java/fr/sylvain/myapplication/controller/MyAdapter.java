@@ -74,6 +74,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         Movie selectedMovie = values.get(position);
         final String name = selectedMovie.getTitle();
         holder.txtName.setText(name);
+        holder.txtName.setTag(selectedMovie.getId());
         holder.txtName.setOnClickListener(ma);
         Picasso.get().load(selectedMovie.getImage()).into(holder.imgMovie);
     }
