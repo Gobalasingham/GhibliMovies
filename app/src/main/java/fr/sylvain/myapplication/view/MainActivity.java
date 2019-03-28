@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         Intent intentMain = new Intent(MainActivity.this ,
                 MovieActivity.class);
-        //intentMain.putExtra("date",(String) v.getTag());
+        intentMain.putExtra("id",(String) v.getTag());
         MainActivity.this.startActivity(intentMain);
     }
 }

@@ -1,5 +1,6 @@
 package fr.sylvain.myapplication.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,17 +20,21 @@ import fr.sylvain.myapplication.model.Movie;
 
 public class MovieActivity extends AppCompatActivity {
 
+    private String id;
+
     private TextView title;
+
     private TextView desc;
     private TextView real;
     private ImageView affiche;
-
     private MovieController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
+
+        id =  getIntent().getStringExtra("id");
 
         title = (TextView) findViewById(R.id.title);
         real = (TextView) findViewById(R.id.real);
@@ -50,6 +55,10 @@ public class MovieActivity extends AppCompatActivity {
         real.setText(new StringBuilder().append("by ").append(movie.getDirector()).toString());
         Picasso.get().load(movie.getImage()).into(affiche);
         desc.setText(movie.getDescription());
+    }
+
+    public String getId() {
+        return id;
     }
 
 }

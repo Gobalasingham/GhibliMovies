@@ -40,7 +40,7 @@ public class MovieController {
         MovieRestAPI movieRestApi = retrofit.create(MovieRestAPI.class);
 
         //On récupére un objet call.
-        Call<Movie> call = movieRestApi.getMovie("2baf70d1-42bb-4437-b551-e5fed5a87abe");
+        Call<Movie> call = movieRestApi.getMovie(mainActivity.getId());
 
         call.enqueue(new Callback<Movie>() {
             @Override
