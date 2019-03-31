@@ -31,10 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         controller = new MainController(this);
         controller.onCreate();
-        // use this setting to
-        // improve performance if you know that changes
-        // in content do not change the layout size
-        // of the RecyclerView
     }
 
     public void showList(List<Movie> list){
